@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnfs.fontshare.com/css/iowan-old-style-1-700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Fira+Code:wght@300;400;500;600&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/dr-sugiyama" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="home-page">
     <!-- 导航栏 -->
@@ -17,41 +19,7 @@
                 <a href="index.html" class="author-name">JIANING YAN</a>
             </div>
             <ul class="nav-links">
-                <li class="dropdown">
-                    <a href="projects.html">PROJECTS</a>
-                    <div class="dropdown-content">
-                        <div class="dropdown-section">
-                            <h4>Entrepreneurial Projects</h4>
-                            <ul>
-                                <li><a href="#">MelTown Music Overview</a></li>
-                                <li><a href="#">Offline Segment</a></li>
-                                <li><a href="#">Online Segment</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>Theater Experiences</h4>
-                            <ul>
-                                <li><a href="#">2023 "The Haunted"</a></li>
-                                <li><a href="#">2024 "The Boor"</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>Data Integration</h4>
-                            <ul>
-                                <li><a href="#">Deck & Data Analysis</a></li>
-                                <li><a href="#">Management Tables</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>Personal Projects</h4>
-                            <ul>
-                                <li><a href="#">Performance Photographing</a></li>
-                                <li><a href="#">Music Teacher Experience</a></li>
-                                <li><a href="#">Competition Experience</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+                <li><a href="projects.html">PROJECTS</a></li>
                 <li class="dropdown">
                     <a href="about.html">ABOUT ME</a>
                     <div class="dropdown-content single-column">
@@ -72,9 +40,34 @@
 
     <!-- 首页部分 -->
     <main class="hero">
-        <!-- 单张图片 -->
-        <div class="image-container">
-            <img src="images/image 2.jpg" alt="Performance Image" class="showcase-image">
+        <!-- 三张并排图片 -->
+        <div class="image-grid-container">
+            <div class="image-grid">
+                <div class="image-item">
+                    <a href="entrepreneurial.html#offline-segment" class="image-link">
+                        <img src="images/IMG_7501.jpg" alt="Performance Image 1" class="showcase-image">
+                        <div class="image-overlay">
+                            <h3>Meltown Music Offline Segment</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="image-item">
+                    <a href="theater.html#haunted" class="image-link">
+                        <img src="images/IMG_2487_副本.jpg" alt="Performance Image 2" class="showcase-image">
+                        <div class="image-overlay">
+                            <h3>The Haunted (2023)</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="image-item">
+                    <a href="theater.html#boor" class="image-link">
+                        <img src="images/IMG_2490 3_副本.jpg" alt="Performance Image 3" class="showcase-image">
+                        <div class="image-overlay">
+                            <h3>The Boor (2024)</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- 底部内容 -->

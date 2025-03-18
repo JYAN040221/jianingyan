@@ -9,8 +9,8 @@
     /* Typography Scale */
     --h1-size: clamp(2.5rem, 5vw, 4rem);
     --h2-size: clamp(1.75rem, 3vw, 2.5rem);
-    --h3-size: clamp(0.875rem, 1.5vw, 1rem);
-    --body-size: clamp(0.875rem, 1.2vw, 1rem);
+    --h3-size: clamp(1rem, 1.5vw, 1.25rem);
+    --body-size: clamp(1rem, 1.5vw, 1.25rem);
 }
 
 * {
@@ -20,16 +20,16 @@
 }
 
 body {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Source Serif Pro', serif;
     font-size: var(--body-size);
-    line-height: 1.5;
+    line-height: 1.6;
     background-color: var(--primary-black);
     color: var(--text-white);
 }
 
 /* Modern Typography */
 h1 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: var(--h1-size);
     font-weight: 500;
     letter-spacing: -0.03em;
@@ -39,7 +39,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Libre Baskerville', serif;
     font-size: var(--h2-size);
     font-weight: 400;
     letter-spacing: -0.02em;
@@ -59,7 +59,7 @@ h2::after {
 }
 
 h3 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: var(--h3-size);
     font-weight: 500;
     letter-spacing: 0.15em;
@@ -145,7 +145,7 @@ h3 {
 
 /* 导航栏链接样式 */
 .nav-links li a {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     color: var(--text-white);
     text-decoration: none;
     font-size: 1rem;
@@ -156,7 +156,8 @@ h3 {
     padding-bottom: 0.25rem;
 }
 
-.nav-links li a::after {
+/* 给所有主导航项添加下划线效果 */
+.nav-links li > a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -167,8 +168,35 @@ h3 {
     transition: width 0.3s ease;
 }
 
-.nav-links li a:hover::after {
+.nav-links li > a:hover::after {
     width: 100%;
+}
+
+/* 下拉菜单内容样式 */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--primary-black);
+    min-width: 160px;
+    padding: 0.5rem 0;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: var(--text-white);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 显示下拉菜单 */
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /* 首页布局 */
@@ -181,20 +209,81 @@ h3 {
     margin-top: 0;
 }
 
-/* 图片容器 */
-.image-container {
-    width: 102%;
-    height: auto;
-    margin-left: -1%;
+/* 首页图片网格样式 */
+.home-page .image-grid-container {
+    width: 100%;
+    padding: 0;
     margin-bottom: 3vh;
-    overflow: hidden;
 }
 
-.showcase-image {
+.home-page .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    width: 100%;
+}
+
+.home-page .image-item {
     width: 100%;
     height: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-page .image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+}
+
+.home-page .image-item .showcase-image {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
     object-fit: contain;
     filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.home-page .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.home-page .image-overlay h3 {
+    font-family: 'Fira Code', monospace;
+    color: var(--text-white);
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.home-page .image-link:hover .showcase-image {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.home-page .image-link:hover .image-overlay {
+    opacity: 1;
+}
+
+.home-page .image-link:hover .image-overlay h3 {
+    transform: translateY(0);
 }
 
 /* 底部内容 */
@@ -233,6 +322,8 @@ h3 {
     height: 1.2rem;
     width: auto;
     filter: invert(8%) sepia(98%) saturate(7479%) hue-rotate(246deg) brightness(99%) contrast(143%);
+    min-height: 1.2rem;
+    max-height: 1.2rem;
 }
 
 /* 首页页脚 */
@@ -256,71 +347,137 @@ h3 {
     .nav-links li a {
         font-size: 1.1rem;
     }
+
+    .personal-logo img {
+        height: 1.2rem;
+        width: auto;
+    }
 }
 
 @media (max-width: 768px) {
-    .navbar {
+    .home-page {
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .home-page .image-grid-container {
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .home-page .image-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .home-page .image-item {
+        height: auto;
+        min-height: auto;
+    }
+
+    .home-page .image-item .showcase-image {
+        height: auto;
+        width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+    }
+
+    .home-page .hero {
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+
+    .home-page .bottom-content {
+        padding: 0 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .home-page .navbar {
         padding: 1.5rem;
     }
 
-    .nav-content {
+    .home-page .nav-content {
         flex-direction: column;
         align-items: flex-start;
         gap: 2rem;
     }
 
-    .author-name {
+    .home-page .author-name {
         font-size: 3.5rem;
     }
 
-    .nav-links {
+    .home-page .nav-links {
         width: 100%;
         justify-content: flex-end;
         gap: 1.5rem;
     }
 
-    .image-container {
-        height: 25vh;
+    .home-page .image-container {
+        height: auto;
+        margin-bottom: 2vh;
     }
 
-    .bottom-content {
-        padding: 0 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .tagline {
+    .home-page .tagline {
         font-size: 0.8rem;
+    }
+
+    .personal-logo img {
+        height: 1.2rem;
+        width: auto;
     }
 }
 
 @media (max-width: 480px) {
-    .navbar {
+    .home-page {
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .home-page .image-item {
+        height: auto;
+        min-height: auto;
+    }
+
+    .home-page .image-item .showcase-image {
+        height: auto;
+        width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+    }
+
+    .home-page .navbar {
         padding: 1rem;
     }
 
-    .author-name {
+    .home-page .author-name {
         font-size: 2.5rem;
     }
 
-    .nav-links li a {
+    .home-page .nav-links li a {
         font-size: 0.9rem;
     }
 
-    .image-container {
-        height: 20vh;
+    .home-page .image-container {
+        height: auto;
+        margin-bottom: 1vh;
     }
 
-    .bottom-content {
+    .home-page .bottom-content {
         padding: 0 1rem;
         margin-bottom: 1.5rem;
     }
 
-    .tagline {
+    .home-page .tagline {
         font-size: 0.75rem;
     }
 
     .copyright {
         font-size: 0.8rem;
+    }
+
+    .personal-logo img {
+        height: 1.2rem;
+        width: auto;
     }
 }
 
@@ -333,6 +490,7 @@ section {
 }
 
 .section-title {
+    font-family: 'Libre Baskerville', serif;
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: var(--text-white);
@@ -410,9 +568,13 @@ section {
     object-fit: cover;
 }
 
-.project-card h3 {
-    padding: 1rem;
-    margin: 0;
+.project-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
 }
 
 .project-card p {
@@ -474,7 +636,7 @@ section {
 }
 
 .contact-item h3 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1rem;
     color: #2C2C2C;
     letter-spacing: 0.1em;
@@ -500,7 +662,7 @@ section {
 }
 
 .social-links h3 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1rem;
     color: #2C2C2C;
     margin-bottom: 1.5rem;
@@ -515,7 +677,7 @@ section {
 }
 
 .social-link {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1rem;
     color: #F5F5F5;
     text-decoration: none;
@@ -614,23 +776,36 @@ footer {
     flex-direction: column;
 }
 
+/* 下拉菜单链接样式 */
 .dropdown-content.single-column a {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-white);
+    font-family: 'Space Grotesk', sans-serif !important;
+    color: var(--text-white) !important;
+    font-weight: 300 !important;
+    font-size: 0.65rem !important;
     text-decoration: none;
     padding: 0.5rem 1.5rem;
     transition: all 0.3s ease;
     white-space: nowrap;
 }
 
+/* 移除所有下拉菜单链接的悬停效果 */
 .dropdown-content.single-column a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+}
+
+/* 移除CV链接的悬停效果 */
+.dropdown-content.single-column a[href="about.html#cv"] {
+    pointer-events: none;
+}
+
+/* 移除CONTACT下所有链接的悬停效果 */
+.dropdown-content.single-column a[href="contact.html"] {
+    pointer-events: none;
 }
 
 /* 恢复字体样式 */
 .dropdown-section h4 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -642,7 +817,7 @@ footer {
 
 .dropdown-section a,
 .dropdown-section ul li a {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.65rem;
     font-weight: 400;
     line-height: 1.8;
@@ -726,7 +901,7 @@ footer {
 }
 
 .project-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 2.5rem;
@@ -741,7 +916,7 @@ footer {
 }
 
 .intro-text {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     line-height: 1.8;
     color: var(--text-white);
     max-width: 800px;
@@ -764,7 +939,7 @@ footer {
 }
 
 .segment h2 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-white);
@@ -778,14 +953,14 @@ footer {
 }
 
 .segment p {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-white);
     opacity: 0.9;
 }
 
 .conclusion-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-white);
     font-style: italic;
@@ -944,7 +1119,7 @@ footer {
 }
 
 .page-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: var(--text-white);
@@ -1000,7 +1175,7 @@ footer {
 }
 
 .project-card h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1.8rem;
     font-weight: 600;
     color: var(--text-white);
@@ -1022,7 +1197,7 @@ footer {
 }
 
 .card-tags span {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.75rem;
     padding: 0.35rem 0.75rem;
     background-color: rgba(0, 0, 255, 0.1);
@@ -1192,7 +1367,7 @@ footer {
 
 .personal-page .achievement-item h3,
 .personal-page .role-description h3 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1rem;
     color: var(--text-white);
     margin-bottom: 0.5rem;
@@ -1417,7 +1592,13 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: none;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.personal-page #teaching .grid-image:hover,
+.personal-page #competition .grid-image:hover {
+    filter: grayscale(0%);
 }
 
 /* 响应式调整 */
@@ -1434,7 +1615,15 @@ footer {
     
     .personal-page #teaching .image-grid,
     .personal-page #competition .image-grid {
-        height: 70vh;
+        height: auto;
+        min-height: 70vh;
+    }
+    
+    .personal-page #teaching .grid-image,
+    .personal-page #competition .grid-image {
+        height: auto;
+        min-height: 70vh;
+        object-fit: contain;
     }
 }
 
@@ -1445,7 +1634,15 @@ footer {
     
     .personal-page #teaching .image-grid,
     .personal-page #competition .image-grid {
-        height: 50vh;
+        height: auto;
+        min-height: 50vh;
+    }
+    
+    .personal-page #teaching .grid-image,
+    .personal-page #competition .grid-image {
+        height: auto;
+        min-height: 50vh;
+        object-fit: contain;
     }
 }
 
@@ -1488,7 +1685,7 @@ html {
 }
 
 .about-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: var(--text-white);
@@ -1503,23 +1700,23 @@ html {
 }
 
 .birth-info {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: var(--text-white);
 }
 
 .education-section p,
 .interests-section p {
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 1.1rem;
+    line-height: 1.6;
     color: var(--text-white);
     margin-bottom: 0.25rem;
 }
 
 .experience-section h2 {
+    font-family: 'Libre Baskerville', serif;
     font-size: 1.1rem;
     color: var(--text-white);
     margin-bottom: 0.75rem;
-    font-family: 'Space Grotesk', sans-serif;
 }
 
 .experience-section ul {
@@ -1528,8 +1725,8 @@ html {
 }
 
 .experience-section li {
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 1.1rem;
+    line-height: 1.6;
     color: var(--text-white);
     margin-bottom: 0.25rem;
     position: relative;
@@ -1570,7 +1767,7 @@ html {
     background-color: var(--accent-blue);
     color: var(--text-white);
     text-decoration: none;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 0.9rem;
     letter-spacing: 0.1em;
     transition: all 0.3s ease;
@@ -1689,7 +1886,7 @@ html {
 }
 
 .contact-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: #2C2C2C;
@@ -1704,15 +1901,15 @@ html {
 }
 
 .contact-section h2 {
+    font-family: 'Libre Baskerville', serif;
     font-size: 1.2rem;
     color: #2C2C2C;
     margin-bottom: 1rem;
-    font-family: 'Space Grotesk', sans-serif;
 }
 
 .contact-section p {
-    font-size: 1.1rem;
-    line-height: 1.5;
+    font-size: 1.25rem;
+    line-height: 1.6;
     color: #2C2C2C;
     opacity: 0.8;
 }
@@ -1730,7 +1927,7 @@ html {
 }
 
 .contact-item h3 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1rem;
     color: #2C2C2C;
     letter-spacing: 0.1em;
@@ -1739,7 +1936,7 @@ html {
 .contact-link {
     color: #ED0000;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     transition: all 0.3s ease;
     display: inline-block;
     position: relative;
@@ -1750,13 +1947,13 @@ html {
 }
 
 .contact-text {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: #2C2C2C;
     opacity: 0.9;
 }
 
 .social-links h3 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1rem;
     color: #2C2C2C;
     margin-bottom: 1.5rem;
@@ -1771,7 +1968,7 @@ html {
 }
 
 .social-link {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Fira Code', monospace;
     font-size: 1rem;
     color: #F5F5F5;
     text-decoration: none;
@@ -1930,4 +2127,232 @@ html {
 
 .dropdown-content a:hover {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 首页图片网格样式 */
+.image-grid-container {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 3vh;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    width: 100%;
+}
+
+.image-item {
+    width: 100%;
+    height: 40vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+}
+
+.image-item .showcase-image {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-overlay h3 {
+    font-family: 'Fira Code', monospace;
+    color: var(--text-white);
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.image-link:hover .showcase-image {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.image-link:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-link:hover .image-overlay h3 {
+    transform: translateY(0);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .image-grid-container {
+        padding: 0;
+    }
+    
+    .image-grid {
+        gap: 0;
+    }
+    
+    .image-item {
+        height: 35vh;
+    }
+
+    .image-overlay h3 {
+        font-size: 1.1rem;
+    }
+
+    .image-grid {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .image-grid-container {
+        padding: 0;
+    }
+    
+    .image-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .image-item {
+        height: 30vh;
+    }
+
+    .image-overlay h3 {
+        font-size: 1rem;
+    }
+
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .grid-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-grid-container {
+        padding: 0;
+    }
+    
+    .image-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .image-item {
+        height: 25vh;
+    }
+
+    .image-overlay h3 {
+        font-size: 0.9rem;
+    }
+
+    .image-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .grid-image {
+        height: 200px;
+    }
+}
+
+/* Entrepreneurial页面的图片网格样式 */
+.entrepreneurial-page .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.entrepreneurial-page .grid-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.entrepreneurial-page .grid-image:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+/* ONLINE SEGMENT部分的图片样式 */
+.online-segment .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.online-segment .grid-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.online-segment .grid-image:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .online-segment .image-grid {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .online-segment .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .online-segment .grid-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .online-segment .image-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .online-segment .grid-image {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+    }
 } 
