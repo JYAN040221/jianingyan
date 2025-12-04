@@ -1,10 +1,12 @@
-/* 全局样式 */
+/* 全局样式 - 佳士得高级配色方案 */
 :root {
-    --primary-black: #000000;
-    --primary-light-gray: #F5F5F5;
-    --text-white: #FFFFFF;
-    --text-dark-gray: #2C2C2C;
-    --accent-blue: #0000FF;
+    --primary-black: #000000; /* 纯黑色 - 主背景色 */
+    --primary-light-gray: #FAF9F6; /* 象牙白 - 浅色背景 */
+    --text-white: #FAF9F6; /* 象牙白 - 主文字色 */
+    --text-dark-gray: #2C2C2C; /* 深灰 */
+    --accent-gold: #D4AF37; /* 经典金色 - 强调色 */
+    --accent-gold-light: #E8D5B7; /* 浅金色 - 辅助色 */
+    --accent-gold-dark: #B8941F; /* 深金色 - 悬停效果 */
     
     /* Typography Scale */
     --h1-size: clamp(2.5rem, 5vw, 4rem);
@@ -20,30 +22,30 @@
 }
 
 body {
-    font-family: 'Source Serif Pro', serif;
+    font-family: 'Crimson Text', serif;
     font-size: var(--body-size);
-    line-height: 1.6;
+    line-height: 1.7;
     background-color: var(--primary-black);
     color: var(--text-white);
 }
 
 /* Modern Typography */
 h1 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: var(--h1-size);
-    font-weight: 500;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
 }
 
 h2 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lora', serif;
     font-size: var(--h2-size);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
     margin-bottom: 1rem;
     position: relative;
 }
@@ -55,14 +57,14 @@ h2::after {
     bottom: -0.5rem;
     width: 2em;
     height: 1px;
-    background-color: var(--accent-blue);
+    background-color: var(--accent-gold);
 }
 
 h3 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: var(--h3-size);
     font-weight: 500;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     line-height: 1.4;
     margin-bottom: 0.75rem;
@@ -123,18 +125,26 @@ h3 {
 
 .logo {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .author-name {
-    font-family: 'Iowan Old Style', serif;
+    font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-weight: 900;
-    font-size: 4.5rem;
+    font-weight: 700;
+    font-size: 1.8rem;
     color: var(--text-white);
     text-decoration: none;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     line-height: 0.9;
+}
+
+/* 首页保持大字体和斜体 */
+.home-page .author-name {
+    font-size: 5rem;
+    font-style: italic;
+    line-height: 1;
+    padding-bottom: 0.25rem;
 }
 
 .nav-links {
@@ -145,13 +155,13 @@ h3 {
 
 /* 导航栏链接样式 */
 .nav-links li a {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: var(--text-white);
     text-decoration: none;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
     transition: all 0.3s ease;
-    font-weight: 700;
+    font-weight: 500;
     position: relative;
     padding-bottom: 0.25rem;
 }
@@ -164,7 +174,7 @@ h3 {
     height: 1px;
     bottom: 0;
     left: 0;
-    background-color: var(--accent-blue);
+    background-color: var(--accent-gold);
     transition: width 0.3s ease;
 }
 
@@ -264,7 +274,7 @@ h3 {
 }
 
 .home-page .image-overlay h3 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: var(--text-white);
     font-size: 1.2rem;
     text-align: center;
@@ -302,7 +312,7 @@ h3 {
 /* 标语文字 */
 .tagline {
     color: var(--text-white);
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-style: italic;
     font-weight: 700;
     font-size: 0.85rem;
@@ -315,13 +325,13 @@ h3 {
 .copyright {
     font-family: 'Dr Sugiyama', cursive;
     font-size: 1.2rem;
-    color: var(--accent-blue);
+    color: var(--accent-gold);
 }
 
 .personal-logo img {
     height: 1.2rem;
     width: auto;
-    filter: invert(8%) sepia(98%) saturate(7479%) hue-rotate(246deg) brightness(99%) contrast(143%);
+    filter: brightness(0) saturate(100%) invert(67%) sepia(89%) saturate(1352%) hue-rotate(5deg) brightness(95%) contrast(90%);
     min-height: 1.2rem;
     max-height: 1.2rem;
 }
@@ -329,7 +339,7 @@ h3 {
 /* 首页页脚 */
 .home-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
 }
@@ -337,7 +347,7 @@ h3 {
 /* 响应式设计 */
 @media (max-width: 1024px) {
     .author-name {
-        font-size: 4rem;
+        font-size: 1.6rem;
     }
 
     .nav-links {
@@ -403,7 +413,7 @@ h3 {
     }
 
     .home-page .author-name {
-        font-size: 3.5rem;
+        font-size: 4.5rem;
     }
 
     .home-page .nav-links {
@@ -450,7 +460,7 @@ h3 {
     }
 
     .home-page .author-name {
-        font-size: 2.5rem;
+        font-size: 4.5rem;
     }
 
     .home-page .nav-links li a {
@@ -490,7 +500,7 @@ section {
 }
 
 .section-title {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lora', serif;
     font-size: 2.5rem;
     margin-bottom: 3rem;
     color: var(--text-white);
@@ -500,7 +510,7 @@ section {
 /* 关于我部分样式 */
 .about {
     padding: 5rem 1rem;
-    background-color: #fff;
+    background-color: var(--primary-light-gray);
 }
 
 .about h2 {
@@ -526,7 +536,7 @@ section {
 
 .skill-tags span {
     padding: 0.5rem 1rem;
-    background-color: #f0f0f0;
+    background-color: var(--primary-light-gray);
     border-radius: 20px;
     font-size: 0.9rem;
 }
@@ -534,7 +544,7 @@ section {
 /* 作品展示部分样式 */
 .projects {
     padding: 5rem 1rem;
-    background-color: #f8f9fa;
+    background-color: var(--primary-light-gray);
 }
 
 .projects h2 {
@@ -551,7 +561,7 @@ section {
 }
 
 .project-card {
-    background-color: white;
+    background-color: var(--primary-light-gray);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
@@ -569,7 +579,7 @@ section {
 }
 
 .project-card h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: 600;
     color: var(--text-white);
@@ -579,7 +589,7 @@ section {
 
 .project-card p {
     padding: 0 1rem 1rem;
-    color: #666;
+    color: var(--text-dark-gray);
 }
 
 .project-links {
@@ -590,8 +600,8 @@ section {
 
 .button {
     padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--accent-gold);
+    color: var(--primary-black);
     text-decoration: none;
     border-radius: 5px;
     font-size: 0.9rem;
@@ -599,13 +609,13 @@ section {
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: var(--accent-gold-dark);
 }
 
 /* 联系方式部分样式 */
 .contact {
     padding: 5rem 1rem;
-    background-color: #fff;
+    background-color: var(--primary-light-gray);
 }
 
 .contact h2 {
@@ -636,14 +646,14 @@ section {
 }
 
 .contact-item h3 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     color: #2C2C2C;
     letter-spacing: 0.1em;
 }
 
 .contact-link {
-    color: #ED0000;
+    color: var(--accent-gold);
     text-decoration: none;
     font-size: 1.1rem;
     transition: all 0.3s ease;
@@ -662,7 +672,7 @@ section {
 }
 
 .social-links h3 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     color: #2C2C2C;
     margin-bottom: 1.5rem;
@@ -677,12 +687,12 @@ section {
 }
 
 .social-link {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     color: #F5F5F5;
     text-decoration: none;
     padding: 0.75rem 2rem;
-    background-color: #ED0000;
+    background-color: var(--accent-gold);
     transition: all 0.3s ease;
     text-align: center;
     min-width: 160px;
@@ -778,7 +788,7 @@ footer {
 
 /* 下拉菜单链接样式 */
 .dropdown-content.single-column a {
-    font-family: 'Space Grotesk', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;
     color: var(--text-white) !important;
     font-weight: 300 !important;
     font-size: 0.65rem !important;
@@ -805,7 +815,7 @@ footer {
 
 /* 恢复字体样式 */
 .dropdown-section h4 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -817,7 +827,7 @@ footer {
 
 .dropdown-section a,
 .dropdown-section ul li a {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.65rem;
     font-weight: 400;
     line-height: 1.8;
@@ -843,7 +853,7 @@ footer {
 
 /* 特殊链接样式 */
 .download-link {
-    font-family: 'Space Grotesk', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;
     color: var(--text-white) !important;
     font-weight: 300 !important;
     font-size: 0.65rem !important;
@@ -851,7 +861,7 @@ footer {
 }
 
 .external-link {
-    font-family: 'Space Grotesk', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;
     color: var(--text-white) !important;
     font-weight: 300 !important;
     font-size: 0.65rem !important;
@@ -862,6 +872,7 @@ footer {
     height: 3.5rem;
     width: auto;
     display: block;
+    filter: brightness(0) saturate(100%) invert(10%) sepia(25%) saturate(1500%) hue-rotate(200deg) brightness(12%) contrast(100%);
 }
 
 /* 项目详情页样式 */
@@ -901,7 +912,7 @@ footer {
 }
 
 .project-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 2.5rem;
@@ -939,7 +950,7 @@ footer {
 }
 
 .segment h2 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-white);
@@ -1119,13 +1130,14 @@ footer {
 }
 
 .page-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: var(--text-white);
     margin-bottom: 4rem;
     text-align: center;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .projects-grid {
@@ -1175,7 +1187,7 @@ footer {
 }
 
 .project-card h2 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: 600;
     color: var(--text-white);
@@ -1197,11 +1209,11 @@ footer {
 }
 
 .card-tags span {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     padding: 0.35rem 0.75rem;
-    background-color: rgba(0, 0, 255, 0.1);
-    color: var(--accent-blue);
+    background-color: rgba(212, 175, 55, 0.15);
+    color: var(--accent-gold);
     border-radius: 4px;
     letter-spacing: 0.05em;
 }
@@ -1290,7 +1302,7 @@ footer {
 
 .data-page .grid-image:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 255, 0.2);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
 }
 
 /* 响应式调整 */
@@ -1367,7 +1379,7 @@ footer {
 
 .personal-page .achievement-item h3,
 .personal-page .role-description h3 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     color: var(--text-white);
     margin-bottom: 0.5rem;
@@ -1458,7 +1470,7 @@ footer {
 
 .personal-page .image-link:hover .grid-image {
     transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 255, 0.2);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
 }
 
 @media (max-width: 1024px) {
@@ -1685,7 +1697,7 @@ html {
 }
 
 .about-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: var(--text-white);
@@ -1713,7 +1725,7 @@ html {
 }
 
 .experience-section h2 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lora', serif;
     font-size: 1.1rem;
     color: var(--text-white);
     margin-bottom: 0.75rem;
@@ -1764,10 +1776,10 @@ html {
 .cv-download-button {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background-color: var(--accent-blue);
-    color: var(--text-white);
+    background-color: var(--accent-gold);
+    color: var(--primary-black);
     text-decoration: none;
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     letter-spacing: 0.1em;
     transition: all 0.3s ease;
@@ -1776,8 +1788,8 @@ html {
 }
 
 .cv-download-button:hover {
-    background-color: #ED0000;
-    color: var(--text-white);
+    background-color: var(--accent-gold-dark);
+    color: var(--primary-black);
 }
 
 /* 响应式设计 */
@@ -1851,15 +1863,15 @@ html {
 /* Contact 页面样式 */
 .contact-page {
     height: 100vh;
-    background-color: #F5F5F5;
+    background-color: var(--primary-light-gray);
     display: flex;
     align-items: center;
     padding-top: 80px;
 }
 
 .contact-page .navbar {
-    background-color: #F5F5F5;
-    border-bottom: 1px solid #2C2C2C;
+    background-color: var(--primary-light-gray);
+    border-bottom: 1px solid var(--text-dark-gray);
 }
 
 .contact-page .nav-links li a {
@@ -1867,11 +1879,11 @@ html {
 }
 
 .contact-page .nav-links li a::after {
-    background-color: #ED0000;
+    background-color: var(--accent-gold);
 }
 
 .contact-page .top-logo {
-    filter: brightness(0);
+    filter: brightness(0) saturate(100%) invert(10%) sepia(25%) saturate(1500%) hue-rotate(200deg) brightness(12%) contrast(100%);
 }
 
 .contact-content {
@@ -1886,7 +1898,7 @@ html {
 }
 
 .contact-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: #2C2C2C;
@@ -1901,7 +1913,7 @@ html {
 }
 
 .contact-section h2 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lora', serif;
     font-size: 1.2rem;
     color: #2C2C2C;
     margin-bottom: 1rem;
@@ -1927,14 +1939,14 @@ html {
 }
 
 .contact-item h3 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     color: #2C2C2C;
     letter-spacing: 0.1em;
 }
 
 .contact-link {
-    color: #ED0000;
+    color: var(--accent-gold);
     text-decoration: none;
     font-size: 1.25rem;
     transition: all 0.3s ease;
@@ -1953,7 +1965,7 @@ html {
 }
 
 .social-links h3 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     color: #2C2C2C;
     margin-bottom: 1.5rem;
@@ -1968,12 +1980,12 @@ html {
 }
 
 .social-link {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     color: #F5F5F5;
     text-decoration: none;
     padding: 0.75rem 2rem;
-    background-color: #ED0000;
+    background-color: var(--accent-gold);
     transition: all 0.3s ease;
     text-align: center;
     min-width: 160px;
@@ -2016,7 +2028,7 @@ html {
 }
 
 .contact-page .personal-logo img {
-    filter: brightness(0);
+    filter: brightness(0) saturate(100%) invert(67%) sepia(89%) saturate(1352%) hue-rotate(5deg) brightness(95%) contrast(90%);
 }
 
 /* 响应式设计 */
@@ -2182,7 +2194,7 @@ html {
 }
 
 .image-overlay h3 {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: var(--text-white);
     font-size: 1.2rem;
     text-align: center;
